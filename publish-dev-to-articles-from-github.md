@@ -1,12 +1,14 @@
 ---
-title: Edit and publish dev.to articles from a git repo, with Github + Pipedream
+title: Publish DEV articles from a git repo, with Github + Pipedream
 ---
 
-I wrote this article in VS Code, and published it with `git push`. I'll show you how easy this is to setup and why managing your posts with `git` might make sense.
+I wrote this article in VS Code, on my Mac, and published it with a simple `git push`.
+
+I'll show you how easy this is to setup for your own posts, and you'll see what benefits you get managing posts locally.
 
 ## The short version
 
-Here's how this works. Take this code:
+Take this Markdown:
 
 ```markdown
 # My first post
@@ -14,7 +16,7 @@ Here's how this works. Take this code:
 Hello, world!
 ```
 
-Push it to Github:
+and push it to Github:
 
 ```bash
 git add my-first-post.md
