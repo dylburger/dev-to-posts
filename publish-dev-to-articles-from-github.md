@@ -34,6 +34,10 @@ Keep editing, `git push` again, and the draft will update. When you're ready to 
 ---
 published: true
 ---
+
+# My first post
+
+Hello, world!
 ```
 
 Then run:
@@ -44,7 +48,9 @@ git commit -m "Publishing first post"
 git push
 ```
 
-**PICTURE OF PUBLISHED POST**
+and your brand new article is published to DEV:
+
+![My first article, published](https://res.cloudinary.com/dkbxegavp/image/upload/v1590356175/dev.to%20posts/dev-published-article_sjkyvn.png)
 
 How cool is that! Let's see how this works.
 
