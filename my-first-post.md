@@ -1,6 +1,6 @@
 ---
 title: My First Post
-published: false
+published: true
 ---
 
 Hello, DEV!
