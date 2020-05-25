@@ -2,11 +2,11 @@
 title: Publish DEV articles from a git repo, with Github + Pipedream
 ---
 
-I wrote this article in VS Code, on my Mac, and published it with a simple `git push`.
+I wrote this article in VS Code, and published it with `git push`. [This Pipedream workflow](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit) runs for every `git push`, creating or updating articles using the [DEV API](https://docs.dev.to/api/).
 
 I'll show you how easy this is to setup for your own posts, and you'll see what benefits you get managing posts locally.
 
-## The short version
+## How this works
 
 Take this Markdown:
 
@@ -50,13 +50,24 @@ git push
 
 and your brand new article is published to DEV:
 
-![My first article, published](https://res.cloudinary.com/dkbxegavp/image/upload/v1590356175/dev.to%20posts/dev-published-article_sjkyvn.png)
+<img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1590356175/dev.to%20posts/dev-published-article_sjkyvn.png" alt="My first post, published" width="600px"/>
 
-How cool is that! Let's see how this works.
+How cool is that!
 
-## How this works
+## Why manage DEV posts in a Git repo?
+
+- You can use your own text editor, with your own shortcuts and plugins.
+- Every change you make to an article is tracked in a Git repo. You can see diffs between versions, and revert changes at any time.
+- You can run [Git hooks](https://git-scm.com/book/fa/v2/Customizing-Git-Git-Hooks), for example: you can run a script to validate your Markdown or spell check it before your change gets commited your repo
+- There are so many other automations you can run on `git push`. For example, once you publish your article to DEV, you could automatically post its link to Twitter.
+
+## How to set this up
 
 To get started, you'll need a [Github](https://github.com) account and a [DEV API key](https://dev.to/settings/account).
+
+**I made a video that walks through this whole process, if you prefer that over text**
+
+**VIDEO HERE**
 
 [Create a new Github repo](https://github.com/new) to manage your DEV posts:
 
@@ -68,21 +79,35 @@ Clone the repo locally:
 git clone git@github.com:[YOUR_USERNAME]/dev-to-posts.git
 ```
 
-Next, you'll configure a [Pipedream](https://pipedream.com) workflow to interact with the DEV posts each time you `git push` to this repo.
+Next, you'll configure a [Pipedream](https://pipedream.com) workflow to publish your articles using the [DEV API](https://docs.dev.to/api/).
 
-Pipedream is an integration platform for developers. For this DEV flow, Pipedream works like Github Actions: each time you `git push`, your workflow runs. Pipedream workflows are written using [pre-built actions](https://docs.pipedream.com/workflows/steps/actions/#using-existing-actions) and custom Node.js code, and you can connect to hundreds of pre-built API integrations - you'll use the DEV integration here.
+Pipedream is an integration platform for developers. For this flow, Pipedream works like [Github Actions](https://github.com/features/actions): each time you `git push`, the workflow runs. Pipedream workflows are written using [pre-built actions](https://docs.pipedream.com/workflows/steps/actions/#using-existing-actions) and [custom Node.js code](https://docs.pipedream.com/workflows/steps/code/), each of which can connect to hundreds of API integrations.
 
-It's also easy to re-use existing Pipedream workflows. **Open this workflow** and click copy. Here, you'll be asked to sign up for a Pipedream account.
+Visit [https://pipedream.com] and click the green **Get Started** button to sign up for a free account.
 
-First, you'll be asked to configure the **trigger** step. This tells the workflow to run on every `git push` event in a specific repo. You'll just need to connect your Github account and select your repo from the dropdown menu:
+**Get Started Image**
 
-**Image of connect your account flow**
+Once you've signed up, [**open my DEV workflow**](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit) and click **Copy** near the top-right. **This creates a copy of my workflow in your account, that will run for _your_ repo**.
 
-**Dropdown menu**
+First, you'll be asked to configure the **trigger** step. This workflow runs every time you `git push` to your repo. You'll just need to connect your Github account and select your repo from the dropdown menu:
 
-Account connections are scoped to steps. You'll need to auth into your Github account and add your DEV API key in the necessary steps.
+![Connect Github account](https://res.cloudinary.com/dkbxegavp/image/upload/v1590435452/dev.to%20posts/connect-github-account_vbugvb.png)
 
-**Picture of Connect Account** steps.
+![Choose DEV posts repo](https://res.cloudinary.com/dkbxegavp/image/upload/v1590435484/dev.to%20posts/choose-dev-to-repo_sog0ux.png)
+
+Your trigger step should look like this when you're done:
+
+![Finished Trigger step](https://res.cloudinary.com/dkbxegavp/image/upload/v1590435498/dev.to%20posts/finished-trigger-setup_lo0a6i.png)
+
+Click **Create Source** at the bottom right of the trigger step. This will configure a [webhook](https://requestbin.com/blog/working-with-webhooks/) in your Github repo that sends data about every push to this Pipedream workflow.
+
+The rest of the workflow parses the Git commits included in this push and fetches the content of any new or updated Markdown files. If you're adding a _new_ article to your repo, the workflow creates a new DEV article. If you're pushing an update to an existing article, the workflow updates that DEV article.
+
+This logic is broken up into [workflow steps](https://docs.pipedream.com/workflows/steps/). You'll need to connect your Github and DEV accounts to these steps to make sure the workflow can connect to these APIs. **Just scroll down through the workflow, and press the Connect Account buttons everywhere you see them.** Like in the trigger step, this will prompt you to connect your Github account or enter your DEV API key.
+
+## Making changes to articles in the DEV UI
+
+**Any change you make to articles in the DEV UI will get overwritten unless you also make those changes to the file in `git`**.
 
 ## How images work
 
