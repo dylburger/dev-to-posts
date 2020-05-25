@@ -1,7 +1,6 @@
 ---
+title: My First Post
 published: false
 ---
-
-# My first post
 
 Hello, world!
