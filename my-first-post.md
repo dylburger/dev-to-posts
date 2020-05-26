@@ -1,4 +1,5 @@
 ---
-title: My First Post 2
+title: My First Post
+published: true
 ---
 Hello, world
