@@ -2,7 +2,7 @@
 title: Publish DEV articles from a git repo, with Github + Pipedream
 ---
 
-I wrote this article in VS Code, and published it with `git push`. [This Pipedream workflow](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit) runs for every `git push`, creating or updating articles using the [DEV API](https://docs.dev.to/api/).
+I wrote this article in VS Code, and published it by running `git push`. [This Pipedream workflow](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit) runs for every `git push`, creating or updating articles using the [DEV API](https://docs.dev.to/api/).
 
 I'll show you how easy this is to setup for your own posts, and you'll see what benefits you get managing posts locally.
 
@@ -11,8 +11,6 @@ I'll show you how easy this is to setup for your own posts, and you'll see what 
 Take this Markdown:
 
 ```markdown
-# My first post
-
 Hello, world!
 ```
 
@@ -35,8 +33,6 @@ Keep editing, `git push` again, and the draft will update. When you're ready to 
 published: true
 ---
 
-# My first post
-
 Hello, world!
 ```
 
@@ -48,7 +44,9 @@ git commit -m "Publishing first post"
 git push
 ```
 
-and your brand new article is published to DEV:
+and you're published!
+
+**SIMPLIFY THIS IMAGE TO REFLECT SIMPLER POST**
 
 <img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1590356175/dev.to%20posts/dev-published-article_sjkyvn.png" alt="My first post, published" width="600px"/>
 
