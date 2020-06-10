@@ -2,17 +2,23 @@
 title: Publish DEV articles from a Git repo, with Github + Pipedream
 ---
 
-I wrote this article in VS Code, on my Mac, and published it to DEV by running `git push` using [this Pipedream workflow](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit). The workflow runs every time I `git push` or merge a pull request to `master`, creating or updating articles using the [DEV API](https://docs.dev.to/api/).
+**ADD COVER IMAGE**
 
-Below, I'll disscuss why I set this up, and show you how easy it is to configure for your own posts.
+I wrote this article in VS Code, on my Mac, and published it to DEV by running `git push` using [this Pipedream workflow](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit). The workflow runs every time I `git push` or merge a pull request to `master`, creating or updating articles in DEV using the [DEV API](https://docs.dev.to/api/).
 
-## A sneak peek at how this works
+Below, I'll discuss why I set this up, and show you how easy it is to configure for your own posts.
 
-I'll show you the finished product first so you see how this works.
+## How this works
+
+I'll show you the finished product first so you see how this works end-to-end.
 
 I start with this Markdown in a new file:
 
 ```markdown
+---
+title: My First DEV Post
+---
+
 Hello, world!
 ```
 
@@ -26,14 +32,17 @@ git push
 
 As soon as I push, a draft of that post will appear in my DEV account:
 
-![My first draft article](https://res.cloudinary.com/dkbxegavp/image/upload/v1590355743/dev.to%20posts/dev-to-draft_bmqlgb.png)
+![My First Article Draft](https://res.cloudinary.com/dkbxegavp/image/upload/v1591819376/dev.to%20posts/Screen_Shot_2020-06-10_at_1.01.56_PM_ovbijo.png)
 
-I can edit and `git push` again, and the draft will update. When I'm ready to publish, I add this to the top of my Markdown:
+I can edit and `git push` again, and the draft will update. When I'm ready to publish, I add the `published: true` to the top of my Markdown:
 
 ```markdown
 ---
 published: true
+title: My First DEV Post
 ---
+
+Hello, world!
 ```
 
 Then run:
@@ -46,9 +55,7 @@ git push
 
 and it's published:
 
-**SIMPLIFY THIS IMAGE TO REFLECT SIMPLER POST**
-
-<img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1590356175/dev.to%20posts/dev-published-article_sjkyvn.png" alt="My first post, published" width="600px"/>
+<img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1591819622/dev.to%20posts/Screen_Shot_2020-06-10_at_1.04.19_PM_qprplu.png" alt="My first post, published" width="600px"/>
 
 How cool is that!
 
@@ -66,15 +73,11 @@ But storing your articles in a Github repo carries other benefits:
 
 To get started, you'll need a [Github](https://github.com) account and a [DEV API key](https://dev.to/settings/account).
 
-**I made a video that walks through this whole process, if you prefer that over text**
-
-**VIDEO HERE**
-
 First, [create a new Github repo](https://github.com/new) to manage your DEV posts:
 
 ![DEV posts Github repo title](https://dev-to-uploads.s3.amazonaws.com/i/kgmyzh4vf6xmj1tbpuj1.png)
 
-Clone the repo locally:
+Then clone the repo locally:
 
 ```bash
 git clone git@github.com:[YOUR_USERNAME]/dev-to-posts.git
@@ -84,7 +87,7 @@ Next, you'll configure a [Pipedream](https://pipedream.com) workflow to publish 
 
 Pipedream is an integration platform for developers. For this flow, Pipedream works like [Github Actions](https://github.com/features/actions): each time you push new Markdown files to your repo, the workflow runs. Pipedream workflows are written using [pre-built actions](https://docs.pipedream.com/workflows/steps/actions/#using-existing-actions) and [custom Node.js code](https://docs.pipedream.com/workflows/steps/code/), each of which can connect to hundreds of API integrations. You can run this workflow **for free** on Pipedream's [free tier](https://docs.pipedream.com/pricing/).
 
-Visit [https://pipedream.com] and click the green **Get Started** button to sign up for a free account.
+Visit [https://pipedream.com](https://pipedream.com) and click the green **Get Started** button to sign up for a free account.
 
 **Get Started Image**
 
@@ -128,11 +131,11 @@ git push
 
 As soon as you push these changes, you should see a new event appear in your Pipedream workflow:
 
-**ADD NEW EVENT IMAGE HERE**
+![New Pipedream event](https://res.cloudinary.com/dkbxegavp/image/upload/v1591819326/dev.to%20posts/Screen_Shot_2020-06-10_at_12.57.13_PM_qu31r1.png)
 
 This should run the `create_and_update_dev_posts` step of the workflow, creating a new draft article in DEV:
 
-**ADD PICTURE OF NEW DEV ARTICLE**
+![New DEV draft](https://res.cloudinary.com/dkbxegavp/image/upload/v1591819376/dev.to%20posts/Screen_Shot_2020-06-10_at_1.01.56_PM_ovbijo.png)
 
 To publish the article, add `published: true` to the [YAML Front Matter](https://dev.to/p/editor_guide) section at the top of your file:
 
@@ -153,7 +156,7 @@ git push
 
 You should see your brand new article show up, published, in DEV:
 
-**SIMPLIFY THIS IMAGE TO REFLECT SIMPLER POST**
+![Published dev article](https://res.cloudinary.com/dkbxegavp/image/upload/v1591819622/dev.to%20posts/Screen_Shot_2020-06-10_at_1.04.19_PM_qprplu.png)
 
 To unpublish, set the `published` flag to `false`:
 
@@ -164,7 +167,7 @@ published: false
 ---
 ```
 
-**Since you own your copy of the Pipedream workflow, you can modify the code in any way you'd like**. You could update the DEV step to change how articles get published, or add a step to send a message to Slack, or post a tweet, any time you publish a new article. If you make any edits, share them in the comments below or publish your own article about it!
+**Since you own this copy of the Pipedream workflow, you can modify the code in any way you'd like**. You could update the DEV step to change how articles get published, or add a step to send a message to Slack, or post a tweet, any time you publish a new article. If you make any edits, share them in the comments below or publish your own article about it!
 
 The rest of this post addresses other details of the integration, like managing images in articles, and other [YAML Front Matter](https://dev.to/p/editor_guide) you can use to change details of your posts.
 
