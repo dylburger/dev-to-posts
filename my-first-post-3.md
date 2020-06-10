@@ -1,4 +1,4 @@
 ---
 title: My First Post 3
 ---
-Hello, world
+Hello, world, foo
