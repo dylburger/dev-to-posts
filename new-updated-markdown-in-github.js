@@ -79,8 +79,8 @@ module.exports = {
     // Parses the incoming push for new commits
     // Returns any new, updated, or removed posts
 
-    const { ref, commits } = event;
-    const { default_branch, name, owner } = event.repository;
+    const { ref, commits } = body;
+    const { default_branch, name, owner } = body.repository;
 
     // Ensure push is tied to default repo branch, else exit early
     if (ref !== `refs/heads/${default_branch}`) {
