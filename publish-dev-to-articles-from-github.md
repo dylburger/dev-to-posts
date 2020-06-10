@@ -1,6 +1,6 @@
 ---
 title: Publish DEV articles from a Git repo, with Github + Pipedream
-cover_image: https://res.cloudinary.com/dkbxegavp/image/upload/v1591820544/dev.to%20posts/Screen_Shot_2020-06-10_at_1.22.04_PM_phgapi.png
+cover_image: https://res.cloudinary.com/dkbxegavp/image/upload/v1591820853/dev.to%20posts/Screen_Shot_2020-06-10_at_1.22.04_PM_q8nebo.png
 tags: pipedream, github, meta, git
 ---
 
@@ -10,7 +10,7 @@ I wrote this article in VS Code, on my Mac, and published it to DEV by running `
 
 Below, I'll discuss why I set this up, and show you how easy it is to configure for your own posts.
 
-# How this works
+## **How this works**
 
 I'll show you the finished product first so you see how this works end-to-end.
 
