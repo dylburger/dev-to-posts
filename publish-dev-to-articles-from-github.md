@@ -2,6 +2,7 @@
 title: Publish DEV articles from a Git repo, with Github + Pipedream
 cover_image: https://res.cloudinary.com/dkbxegavp/image/upload/v1591820988/dev.to%20posts/Screen_Shot_2020-06-10_at_1.29.13_PM_gz9lv5.png
 tags: pipedream, github, meta, git
+published: true
 ---
 
 I wrote this article with [VS Code](https://code.visualstudio.com/), on my Mac, and published it by running `git push`. All my DEV posts are tracked by Git, and I can manage them from my local machine.
