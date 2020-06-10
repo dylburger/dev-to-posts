@@ -1,5 +1,5 @@
 ---
-title: My First Post 2
+title: My First Post
 published: false
 ---
-Hello, world
+Hello, world, foo
