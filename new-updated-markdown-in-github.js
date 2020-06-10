@@ -1,9 +1,10 @@
 const crypto = require("crypto");
 const { extname } = require("path");
-// TODO: try to get retries and throttling working again
+// TODO: configure retries and throttling
 // See https://octokit.github.io/rest.js/#automatic-retries
 const { Octokit } = require("@octokit/rest");
 const github = require("https://github.com/PipedreamHQ/pipedream/components/github/github.app.js");
+const uniq = require("lodash.uniq");
 
 module.exports = {
   name: "New or Updated Markdown Files in Git commit",
@@ -104,6 +105,14 @@ module.exports = {
       addedPosts = addedPosts.concat(added.filter(this.isMarkdown));
       modifiedPosts = modifiedPosts.concat(modified.filter(this.isMarkdown));
     }
+
+    // There are a number of conditions where the same file may be included
+    // in multiple commits. I might edit the same file multiple times, or
+    // work on a change in a new branch, then merge that change to master,
+    // which yields two commits. We dedupe any added or modified files to
+    // ensure the same file isn't included twice in either group.
+    addedPosts = uniq(addedPosts, "path");
+    modifiedPosts = uniq(modifiedPosts, "path");
 
     if (!addedPosts.length && !modifiedPosts.length) {
       console.log("No Markdown files added or updated in this commit");
