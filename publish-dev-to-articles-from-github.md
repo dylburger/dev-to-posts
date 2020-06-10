@@ -4,7 +4,7 @@ cover_image: https://res.cloudinary.com/dkbxegavp/image/upload/v1591820988/dev.t
 tags: pipedream, github, meta, git
 ---
 
-I wrote this article with [VS Code](https://code.visualstudio.com/), on my Mac, and published it by running `git push`. All my DEV posts are tracked in Git, and I can manage them from my local machine.
+I wrote this article with [VS Code](https://code.visualstudio.com/), on my Mac, and published it by running `git push`. All my DEV posts are tracked by Git, and I can manage them from my local machine.
 
 Below, I'll tell you why I set this up, and show you how easy it is to configure for your own posts.
 
@@ -34,7 +34,7 @@ As soon as I push, [this Pipedream workflow](https://pipedream.com/@dylan/publis
 
 ![My First Article Draft](https://res.cloudinary.com/dkbxegavp/image/upload/v1591819376/dev.to%20posts/Screen_Shot_2020-06-10_at_1.01.56_PM_ovbijo.png)
 
-I can edit and `git push` again, and the draft will update. When I'm ready to publish, I add the `published: true` to the top of my Markdown:
+I can edit and `git push` again, and the draft will update. When I'm ready to publish, I add `published: true` to the top of my YAML front matter:
 
 ```markdown
 ---
@@ -61,13 +61,11 @@ How cool is that!
 
 ## **Why manage DEV posts in a Git repo?**
 
-I like writing code in [VS Code](https://code.visualstudio.com/), with all its keyboard shortcuts, plugins, and other goodies I've added to make it my own.
-
-So when I write Markdown in the DEV editor, I miss my local setup. That's the primary reason I set this up: **I get to write articles in my own editor, with my own shortcuts and tools**.
+I like writing code in [VS Code](https://code.visualstudio.com/), with all its keyboard shortcuts, plugins, and other goodies I've added to make it my own. When I write Markdown in the DEV editor, I miss my local setup. That's the primary reason I set this up: **I get to write articles in my own editor, with my own shortcuts and tools**.
 
 But storing your articles in a Github repo carries other benefits:
 
-- Every change you make to an article is tracked in Git. You can compare the changes you made between versions, or revert to an older version. If you make your repo public, anyone can open a pull request to fix typos, broken links, and more.
+- Every change you make to an article is tracked by Git. You can compare the changes you made between versions, or revert to an older version. If you make your repo public, anyone can open a pull request to fix typos, broken links, and more.
 - You can run [Git hooks](https://git-scm.com/book/fa/v2/Customizing-Git-Git-Hooks) or [Github Actions](https://help.github.com/en/actions) to automate basic tasks: for example, you could run a script to validate your Markdown or spell check it before your change gets commited your repo.
 - You can trigger other, more complex automations on every `git push` using [Pipedream](https://pipedream.com) workflows. For example, once you publish your article to DEV, you could automatically post its link to Twitter.
 
@@ -87,7 +85,7 @@ git clone git@github.com:[YOUR_USERNAME]/dev-to-posts.git
 
 Next, you'll configure a [Pipedream](https://pipedream.com) workflow to publish your articles using the [DEV API](https://docs.dev.to/api/).
 
-Pipedream is an integration platform for developers. For this flow, Pipedream works like [Github Actions](https://github.com/features/actions): each time you push new Markdown files to your repo, the workflow runs. Pipedream workflows are written using [pre-built actions](https://docs.pipedream.com/workflows/steps/actions/#using-existing-actions) and [custom Node.js code](https://docs.pipedream.com/workflows/steps/code/), each of which can connect to hundreds of API integrations. You can run this workflow **for free** on Pipedream's [free tier](https://docs.pipedream.com/pricing/).
+**Pipedream is an integration platform for developers**. For this flow, Pipedream works like [Github Actions](https://github.com/features/actions): each time you push new Markdown files to your repo, the workflow runs. Pipedream workflows are written using [pre-built actions](https://docs.pipedream.com/workflows/steps/actions/#using-existing-actions) and [custom Node.js code](https://docs.pipedream.com/workflows/steps/code/), each of which can connect to hundreds of API integrations. You can run this workflow **for free** on Pipedream's [free tier](https://docs.pipedream.com/pricing/).
 
 Visit [https://pipedream.com](https://pipedream.com) and press the **Sign In** button in the top-right to sign up for a Pipedream account:
 
@@ -102,6 +100,10 @@ First, you'll be asked to configure the **Trigger** step. This workflow runs eve
 <img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1590435484/dev.to%20posts/choose-dev-to-repo_sog0ux.png" alt="Choose DEV posts repo" width="300px"/>
 
 Then click **Create Source** at the bottom right of the trigger step. This will configure a [webhook](https://requestbin.com/blog/working-with-webhooks/) in your Github repo that notifies this workflow anytime a push happens.
+
+You'll also need to turn this trigger step **On** to make sure it runs automatically on new pushes:
+
+![Turn trigger step on](https://res.cloudinary.com/dkbxegavp/image/upload/v1591823665/dev.to%20posts/Screen_Shot_2020-06-10_at_2.13.12_PM_q5e4jm.png)
 
 The next [step](https://docs.pipedream.com/workflows/steps/) of the workflow - `create_and_update_dev_posts` - runs Node.js code to push this Markdown to the DEV API. If you add a _new_ article to your repo, the workflow creates a new DEV article. If you're pushing an update to an existing article, the workflow updates that DEV article.
 
@@ -135,7 +137,7 @@ This triggers the workflow, creating a new draft article in DEV:
 
 ![New DEV draft](https://res.cloudinary.com/dkbxegavp/image/upload/v1591819376/dev.to%20posts/Screen_Shot_2020-06-10_at_1.01.56_PM_ovbijo.png)
 
-To publish the article, add `published: true` to the [YAML Front Matter](https://dev.to/p/editor_guide) section at the top of your file:
+To publish the article, add `published: true` to the [YAML front matter](https://dev.to/p/editor_guide) section at the top of your file:
 
 ```markdown
 ---
@@ -167,7 +169,7 @@ published: false
 
 **Since you own this copy of the Pipedream workflow, you can modify the code in any way you'd like**. You could update the DEV step to change how articles get published, or add a step to send a message to Slack, or post a tweet, any time you publish a new article. If you make any edits, share them in the comments below or publish your own article about it!
 
-The rest of this post addresses other details of the integration, like managing images in articles, and other [YAML Front Matter](https://dev.to/p/editor_guide) you can use to change details of your posts.
+The rest of this post addresses other details of the integration, like managing images in articles, and other [YAML front matter](https://dev.to/p/editor_guide) you can use to change details of your posts.
 
 ## **Making changes to articles in the DEV UI**
 
