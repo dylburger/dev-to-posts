@@ -115,7 +115,7 @@ module.exports = {
     for (const path of addedPosts) {
       addedFileContents.push({
         path,
-        contents: await getFileContents(owner.name, name, path, ref),
+        contents: await this.getFileContents(owner.name, name, path, ref),
       });
     }
 
@@ -123,7 +123,7 @@ module.exports = {
     for (const path of modifiedPosts) {
       modifiedFileContents.push({
         path,
-        contents: await getFileContents(owner.name, name, path, ref),
+        contents: await this.getFileContents(owner.name, name, path, ref),
       });
     }
 
