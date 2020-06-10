@@ -1,4 +1,4 @@
 ---
 title: My First DEV Post
 ---
-Hello, world
+Hello, world!

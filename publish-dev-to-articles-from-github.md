@@ -104,7 +104,9 @@ Click **Create Source** at the bottom right of the trigger step. This will confi
 
 The next [step](https://docs.pipedream.com/workflows/steps/) of your workflow - `create_and_update_dev_posts` - runs the code to push this Markdown to the DEV API. If you add a _new_ article to your repo, the workflow creates a new DEV article. If you're pushing an update to an existing article, the workflow updates that DEV article.
 
-To get this step working, you'll just need to connect your DEV API key. **Press the Connect Account button near the top of this step.** Like in the trigger step, this will prompt you to enter your DEV API key.
+To get this step working, you'll just need to connect your DEV API key. **Press the Connect Account button near the top of this step.** Like in the trigger step, this will prompt you to enter your DEV API key:
+
+![Connect DEV API key](https://res.cloudinary.com/dkbxegavp/image/upload/v1591814490/dev.to%20posts/Screen_Shot_2020-06-10_at_11.36.01_AM_zp6hko.png).
 
 **Now you're ready to push your first article**. Create a new Markdown file in the Git repo you cloned above, adding the following contents:
 
@@ -115,6 +117,16 @@ title: My First DEV Post
 
 Hello, world!
 ```
+
+Add, commit, and push this file to Github:
+
+```bash
+git add my-first-post.md
+git commit -m "Adding first post"
+git push
+```
+
+As soon as you push these changes, you should see a new event appear in your Pipedream workflow:
 
 ## Making changes to articles in the DEV UI
 
