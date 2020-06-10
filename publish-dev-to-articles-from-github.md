@@ -1,14 +1,16 @@
 ---
-title: Publish DEV articles from a git repo, with Github + Pipedream
+title: Publish DEV articles from a Git repo, with Github + Pipedream
 ---
 
-I wrote this article in VS Code, and published it by running `git push`. [This Pipedream workflow](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit) runs for every `git push`, creating or updating articles using the [DEV API](https://docs.dev.to/api/).
+I wrote this article in VS Code, on my Mac, and published it to DEV by running `git push`. [This Pipedream workflow](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit) runs every time I `git push` or merge a pull request to `master`, creating or updating articles using the [DEV API](https://docs.dev.to/api/).
 
-I'll show you how easy this is to setup for your own posts, and you'll see what benefits you get managing posts locally.
+Below, I'll talk about why I set this up, and show you how easy it is to configure for your own posts.
 
-## How this works
+## A sneak peek at how this works
 
-Take this Markdown:
+I'll show you the finished product first so you see how this works.
+
+I start with this Markdown in a new file:
 
 ```markdown
 Hello, world!
@@ -22,18 +24,16 @@ git commit -m "Adding first post"
 git push
 ```
 
-You'll see the article appear as a draft in your DEV account.
+As soon as I push, a draft of that post will appear in my DEV account:
 
 ![My first draft article](https://res.cloudinary.com/dkbxegavp/image/upload/v1590355743/dev.to%20posts/dev-to-draft_bmqlgb.png)
 
-Keep editing, `git push` again, and the draft will update. When you're ready to publish, add this to the top of your post:
+I can edit and `git push` again, and the draft will update. When I'm ready to publish, I add this to the top of my Markdown:
 
 ```markdown
 ---
 published: true
 ---
-
-Hello, world!
 ```
 
 Then run:
@@ -44,7 +44,7 @@ git commit -m "Publishing first post"
 git push
 ```
 
-and you're published!
+and it's published:
 
 **SIMPLIFY THIS IMAGE TO REFLECT SIMPLER POST**
 
@@ -54,10 +54,13 @@ How cool is that!
 
 ## Why manage DEV posts in a Git repo?
 
-- You can use your own text editor, with your own shortcuts and plugins.
-- Every change you make to an article is tracked in a Git repo. You can see diffs between versions, and revert changes at any time.
-- You can run [Git hooks](https://git-scm.com/book/fa/v2/Customizing-Git-Git-Hooks), for example: you can run a script to validate your Markdown or spell check it before your change gets commited your repo
-- There are so many other automations you can run on `git push`. For example, once you publish your article to DEV, you could automatically post its link to Twitter.
+I like writing code in [VS Code](https://code.visualstudio.com/), with all its keyboard shortcuts, plugins, and other goodies I've added to make it my own. So when I write Markdown in the DEV editor, I miss my local setup. That's the primary reason I set this up: **I get to write articles in my own editor, with my own shortcuts and tools**.
+
+But storing your articles in a Github repo carries other benefits:
+
+- Every change you make to an article is tracked in Git. You can compare the changes you made between versions, or revert to an older version if you need. If you make your repo public, anyone can open a pull request to fix typos, broken links, and more.
+- You can run [Git hooks](https://git-scm.com/book/fa/v2/Customizing-Git-Git-Hooks) or [Github Actions](https://help.github.com/en/actions) to automate basic tasks: for example, you could run a script to validate your Markdown or spell check it before your change gets commited your repo.
+- You can trigger other, more complex automations on every `git push`. For example, once you publish your article to DEV, you could automatically post its link to Twitter.
 
 ## How to set this up
 
@@ -67,7 +70,7 @@ To get started, you'll need a [Github](https://github.com) account and a [DEV AP
 
 **VIDEO HERE**
 
-[Create a new Github repo](https://github.com/new) to manage your DEV posts:
+First, [create a new Github repo](https://github.com/new) to manage your DEV posts:
 
 ![DEV posts Github repo title](https://dev-to-uploads.s3.amazonaws.com/i/kgmyzh4vf6xmj1tbpuj1.png)
 
@@ -79,7 +82,7 @@ git clone git@github.com:[YOUR_USERNAME]/dev-to-posts.git
 
 Next, you'll configure a [Pipedream](https://pipedream.com) workflow to publish your articles using the [DEV API](https://docs.dev.to/api/).
 
-Pipedream is an integration platform for developers. For this flow, Pipedream works like [Github Actions](https://github.com/features/actions): each time you `git push`, the workflow runs. Pipedream workflows are written using [pre-built actions](https://docs.pipedream.com/workflows/steps/actions/#using-existing-actions) and [custom Node.js code](https://docs.pipedream.com/workflows/steps/code/), each of which can connect to hundreds of API integrations.
+Pipedream is an integration platform for developers. For this flow, Pipedream works like [Github Actions](https://github.com/features/actions): each time you push new Markdown files to your repo, the workflow runs. Pipedream workflows are written using [pre-built actions](https://docs.pipedream.com/workflows/steps/actions/#using-existing-actions) and [custom Node.js code](https://docs.pipedream.com/workflows/steps/code/), each of which can connect to hundreds of API integrations. You can run this workflow **for free** on Pipedream's [free tier](https://docs.pipedream.com/pricing/).
 
 Visit [https://pipedream.com] and click the green **Get Started** button to sign up for a free account.
 
@@ -87,7 +90,7 @@ Visit [https://pipedream.com] and click the green **Get Started** button to sign
 
 Once you've signed up, [**open my DEV workflow**](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit) and click **Copy** near the top-right. **This creates a copy of my workflow in your account, that will run for _your_ repo**.
 
-First, you'll be asked to configure the **trigger** step. This workflow runs every time you `git push` to your repo. You'll just need to connect your Github account and select your repo from the dropdown menu:
+First, you'll be asked to configure the **Trigger** step. This workflow runs every time Markdown files are added or modified in your repo. You'll just need to connect your Github account and select your repo from the dropdown menu:
 
 ![Connect Github account](https://res.cloudinary.com/dkbxegavp/image/upload/v1590435452/dev.to%20posts/connect-github-account_vbugvb.png)
 
@@ -97,11 +100,21 @@ Your trigger step should look like this when you're done:
 
 ![Finished Trigger step](https://res.cloudinary.com/dkbxegavp/image/upload/v1590435498/dev.to%20posts/finished-trigger-setup_lo0a6i.png)
 
-Click **Create Source** at the bottom right of the trigger step. This will configure a [webhook](https://requestbin.com/blog/working-with-webhooks/) in your Github repo that sends data about every push to this Pipedream workflow.
+Click **Create Source** at the bottom right of the trigger step. This will configure a [webhook](https://requestbin.com/blog/working-with-webhooks/) in your Github repo that notifies this workflow of any changes in your Git repo.
 
-The rest of the workflow parses the Git commits included in this push and fetches the content of any new or updated Markdown files. If you're adding a _new_ article to your repo, the workflow creates a new DEV article. If you're pushing an update to an existing article, the workflow updates that DEV article.
+The next [step](https://docs.pipedream.com/workflows/steps/) of your workflow - `create_and_update_dev_posts` - runs the code to push this Markdown to the DEV API. If you add a _new_ article to your repo, the workflow creates a new DEV article. If you're pushing an update to an existing article, the workflow updates that DEV article.
 
-This logic is broken up into [workflow steps](https://docs.pipedream.com/workflows/steps/). You'll need to connect your Github and DEV accounts to these steps to make sure the workflow can connect to these APIs. **Just scroll down through the workflow, and press the Connect Account buttons everywhere you see them.** Like in the trigger step, this will prompt you to connect your Github account or enter your DEV API key.
+To get this step working, you'll just need to connect your DEV API key. **Press the Connect Account button near the top of this step.** Like in the trigger step, this will prompt you to enter your DEV API key.
+
+**Now you're ready to push your first article**. Create a new Markdown file in the Git repo you cloned above, adding the following contents:
+
+```markdown
+---
+title: My First DEV Post
+---
+
+Hello, world!
+```
 
 ## Making changes to articles in the DEV UI
 
