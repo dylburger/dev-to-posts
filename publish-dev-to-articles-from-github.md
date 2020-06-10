@@ -102,7 +102,7 @@ Your trigger step should look like this when you're done:
 
 Click **Create Source** at the bottom right of the trigger step. This will configure a [webhook](https://requestbin.com/blog/working-with-webhooks/) in your Github repo that notifies this workflow of any changes in your Git repo.
 
-The next [step](https://docs.pipedream.com/workflows/steps/) of your workflow - `create_and_update_dev_posts` - runs the code to push this Markdown to the DEV API. If you add a _new_ article to your repo, the workflow creates a new DEV article. If you're pushing an update to an existing article, the workflow updates that DEV article.
+The next [step](https://docs.pipedream.com/workflows/steps/) of the workflow - `create_and_update_dev_posts` - runs Node.js code to push this Markdown to the DEV API. If you add a _new_ article to your repo, the workflow creates a new DEV article. If you're pushing an update to an existing article, the workflow updates that DEV article.
 
 To get this step working, you'll just need to connect your DEV API key. **Press the Connect Account button near the top of this step.** Like in the trigger step, this will prompt you to enter your DEV API key:
 
@@ -128,6 +128,46 @@ git push
 
 As soon as you push these changes, you should see a new event appear in your Pipedream workflow:
 
+**ADD NEW EVENT IMAGE HERE**
+
+This should run the `create_and_update_dev_posts` step of the workflow, creating a new draft article in DEV:
+
+**ADD PICTURE OF NEW DEV ARTICLE**
+
+To publish the article, add `published: true` to the [YAML Front Matter](https://dev.to/p/editor_guide) section at the top of your file:
+
+```markdown
+---
+title: My First DEV Post
+published: true
+---
+```
+
+Then run:
+
+```bash
+git add my-first-post.md
+git commit -m "Publishing first post"
+git push
+```
+
+You should see your brand new article show up, published, in DEV:
+
+**SIMPLIFY THIS IMAGE TO REFLECT SIMPLER POST**
+
+To unpublish, set the `published` flag to `false`:
+
+```markdown
+---
+title: My First DEV Post
+published: false
+---
+```
+
+**Since you own your copy of the Pipedream workflow, you can modify the code in any way you'd like**. You could update the DEV step to change how articles get published, or add a step to send a message to Slack, or post a tweet, any time you publish a new article. If you make any edits, share them in the comments below or publish your own article about it!
+
+The rest of this post addresses other details of the integration, like managing images in articles, and other [YAML Front Matter](https://dev.to/p/editor_guide) you can use to change details of your posts.
+
 ## Making changes to articles in the DEV UI
 
 **Any change you make to articles in the DEV UI will get overwritten unless you also make those changes to the file in `git`**.
@@ -140,21 +180,21 @@ Currently, DEV doesn't have an API for uploading images, but I'm using [Cloudina
 ![My image](https://res.cloudinary.com/dkbxegavp/image/upload/v1590355743/dev.to%20posts/dev-to-draft_bmqlgb.png)
 ```
 
-In the future, you might be able to reference local images in your article Markdown
+In theory, this workflow could be changed to reference local images in your article Markdown:
 
 ```markdown
 ![My image](./images/my-image.png)
 ```
 
-Then once you commit the images to your repo, the Pipedream workflow would upload the images to DEV and change the article references to point to the hosted version, instead.
+Once you commit the images to your repo, the Pipedream workflow could upload the images to Cloudinary directly, and change the article references to point to the hosted version, instead.
 
-In fact, the Pipedream workflow you copied above is yours to modify. **You can add any logic you'd like to that workflow, uploading images to Cloudinary or another hosting provider, or include anything else custom to your publishing process**.
+Remember — the Pipedream workflow you copied above is yours to modify. **You can add any logic you'd like to that workflow, uploading images to Cloudinary or another hosting provider, or include anything else custom to your publishing process**.
 
 ## Default branch only
 
-The workflow processes commits on the default repo branch only (`master`, unless you've changed it). Commits to other branches are ignored.
+The workflow processes commits on the default repo branch only (`master`, unless you've changed it). Commits to other branches are ignored, until they're merged to your default branch.
 
-## One Markdown file : one post
+## One Markdown file : One post
 
 Each Markdown file you push to your DEV repo generates its own DEV post. Your files must have a `.md` extension for them to be processed. Any non-Markdown files are ignored by the workflow.
 
@@ -184,8 +224,7 @@ None of the front matter variables are required. If you include no front matter,
 
 ### Front Matter Variables
 
-- `published`: `true` or `false`. Defaults to `false`, saving the article to DEV in an unpublished state. Set to `true` to publish.
-- `title`: a string, the title of the article.
+The Pipedream workflow passes any YAML Front Matter directly to DEV. DEV then interprets this front matter according to the rules enumerated in [their editor guide](https://dev.to/p/editor_guide). For example, you can use front matter to set your article description, cover image, and more.
 
 ### Titles
 
