@@ -2,9 +2,9 @@
 title: Publish DEV articles from a Git repo, with Github + Pipedream
 ---
 
-I wrote this article in VS Code, on my Mac, and published it to DEV by running `git push`. [This Pipedream workflow](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit) runs every time I `git push` or merge a pull request to `master`, creating or updating articles using the [DEV API](https://docs.dev.to/api/).
+I wrote this article in VS Code, on my Mac, and published it to DEV by running `git push` using [this Pipedream workflow](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit). The workflow runs every time I `git push` or merge a pull request to `master`, creating or updating articles using the [DEV API](https://docs.dev.to/api/).
 
-Below, I'll talk about why I set this up, and show you how easy it is to configure for your own posts.
+Below, I'll disscuss why I set this up, and show you how easy it is to configure for your own posts.
 
 ## A sneak peek at how this works
 
@@ -172,9 +172,9 @@ The rest of this post addresses other details of the integration, like managing 
 
 **Any change you make to articles in the DEV UI will get overwritten unless you also make those changes to the file in `git`**.
 
-## How images work
+## How to include images in posts
 
-Currently, DEV doesn't have an API for uploading images, but I'm using [Cloudinary](https://cloudinary.com/) to host mine, referencing the Cloudinary URL in my Markdown:
+Currently, DEV doesn't have an API for uploading images tied to posts, but I'm using [Cloudinary](https://cloudinary.com/) to host mine, referencing the Cloudinary URL in my Markdown:
 
 ```markdown
 ![My image](https://res.cloudinary.com/dkbxegavp/image/upload/v1590355743/dev.to%20posts/dev-to-draft_bmqlgb.png)
@@ -197,24 +197,6 @@ The workflow processes commits on the default repo branch only (`master`, unless
 ## One Markdown file : One post
 
 Each Markdown file you push to your DEV repo generates its own DEV post. Your files must have a `.md` extension for them to be processed. Any non-Markdown files are ignored by the workflow.
-
-## Unpublishing
-
-You can unpublish DEV posts by setting the YAML front matter `published` variable to `false`:
-
-```markdown
----
-published: false
----
-```
-
-Then run:
-
-```bash
-git add my-first-post.md
-git commit -m "Unpublishing first post"
-git push
-```
 
 ## Front Matter
 
