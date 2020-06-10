@@ -87,11 +87,11 @@ Next, you'll configure a [Pipedream](https://pipedream.com) workflow to publish 
 
 Pipedream is an integration platform for developers. For this flow, Pipedream works like [Github Actions](https://github.com/features/actions): each time you push new Markdown files to your repo, the workflow runs. Pipedream workflows are written using [pre-built actions](https://docs.pipedream.com/workflows/steps/actions/#using-existing-actions) and [custom Node.js code](https://docs.pipedream.com/workflows/steps/code/), each of which can connect to hundreds of API integrations. You can run this workflow **for free** on Pipedream's [free tier](https://docs.pipedream.com/pricing/).
 
-Visit [https://pipedream.com](https://pipedream.com) and click the green **Get Started** button to sign up for a free account.
+Visit [https://pipedream.com](https://pipedream.com) and press the **Sign In** button in the top-right to sign up for a Pipedream account:
 
-**Get Started Image**
+![Sign up for Pipedream account](https://res.cloudinary.com/dkbxegavp/image/upload/v1591822072/dev.to%20posts/Screen_Shot_2020-06-10_at_1.38.36_PM_zrnmrj.png)
 
-Once you've signed up, [**open my DEV workflow**](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit) and click **Copy** near the top-right. **This creates a copy of my workflow in your account, that will run for _your_ repo**.
+Once you've signed up, [**open this DEV workflow**](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit) and click **Copy** near the top-right. **This creates a copy of my workflow in your account, that will run for _your_ repo**.
 
 First, you'll be asked to configure the **Trigger** step. This workflow runs every time Markdown files are added or modified in your repo. You'll just need to connect your Github account and select your repo from the dropdown menu:
 
