@@ -106,7 +106,7 @@ module.exports = {
     }
 
     if (!addedPosts.length && !modifiedPosts.length) {
-      console.log("No files added or updated in this commit");
+      console.log("No Markdown files added or updated in this commit");
       return;
     }
 

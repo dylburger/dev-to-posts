@@ -30,6 +30,8 @@ First, it accepts a photo of the street cleaning sign from my phone, along with 
 
 ![event.body example payload in Pipedream](https://res.cloudinary.com/dkbxegavp/image/upload/v1590803935/dev.to%20posts/Screen_Shot_2020-05-29_at_6.40.17_PM_dmea1o.png)
 
+Pipedream uploads the image to an Amazon S3 bucket and provides the link as a [signed URL](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-signed-urls.html) that you can download or reference in your workflow.
+
 ### Extracting text from the image
 
 Every Pipedream workflow is composed of [steps](https://docs.pipedream.com/workflows/steps/). The first step sends the photo of the street cleaning sign to Google's Cloud Vision API and returns the text Google identifies in the image.
