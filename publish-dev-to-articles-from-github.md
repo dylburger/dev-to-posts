@@ -1,14 +1,16 @@
 ---
 title: Publish DEV articles from a Git repo, with Github + Pipedream
+cover_image: https://res.cloudinary.com/dkbxegavp/image/upload/v1591820544/dev.to%20posts/Screen_Shot_2020-06-10_at_1.22.04_PM_phgapi.png
+tags: pipedream, github, meta, git
 ---
 
 **ADD COVER IMAGE**
 
-I wrote this article in VS Code, on my Mac, and published it to DEV by running `git push` using [this Pipedream workflow](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit). The workflow runs every time I `git push` or merge a pull request to `master`, creating or updating articles in DEV using the [DEV API](https://docs.dev.to/api/).
+I wrote this article in VS Code, on my Mac, and published it to DEV by running `git push`. [This Pipedream workflow](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit) runs on `git push`, or when I merge a pull request to `master`, and creates or updates articles in DEV using the [DEV API](https://docs.dev.to/api/).
 
 Below, I'll discuss why I set this up, and show you how easy it is to configure for your own posts.
 
-## How this works
+# How this works
 
 I'll show you the finished product first so you see how this works end-to-end.
 
@@ -59,7 +61,7 @@ and it's published:
 
 How cool is that!
 
-## Why manage DEV posts in a Git repo?
+# Why manage DEV posts in a Git repo?
 
 I like writing code in [VS Code](https://code.visualstudio.com/), with all its keyboard shortcuts, plugins, and other goodies I've added to make it my own. So when I write Markdown in the DEV editor, I miss my local setup. That's the primary reason I set this up: **I get to write articles in my own editor, with my own shortcuts and tools**.
 
@@ -69,7 +71,7 @@ But storing your articles in a Github repo carries other benefits:
 - You can run [Git hooks](https://git-scm.com/book/fa/v2/Customizing-Git-Git-Hooks) or [Github Actions](https://help.github.com/en/actions) to automate basic tasks: for example, you could run a script to validate your Markdown or spell check it before your change gets commited your repo.
 - You can trigger other, more complex automations on every `git push`. For example, once you publish your article to DEV, you could automatically post its link to Twitter.
 
-## How to set this up
+# How to set this up
 
 To get started, you'll need a [Github](https://github.com) account and a [DEV API key](https://dev.to/settings/account).
 
@@ -209,7 +211,7 @@ None of the front matter variables are required. If you include no front matter,
 
 ### Front Matter Variables
 
-The Pipedream workflow passes any YAML Front Matter directly to DEV. DEV then interprets this front matter according to the rules enumerated in [their editor guide](https://dev.to/p/editor_guide). For example, you can use front matter to set your article description, cover image, and more.
+The Pipedream workflow passes any YAML Front Matter directly to DEV. DEV then interprets this front matter according to the rules enumerated in [their editor guide](https://dev.to/p/editor_guide). For example, you can use front matter to set your article tags, cover image, and more.
 
 ### Titles
 
