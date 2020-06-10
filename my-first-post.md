@@ -1,5 +1,4 @@
 ---
-title: My First Post
-published: false
+title: My First DEV Post
 ---
 Hello, world
