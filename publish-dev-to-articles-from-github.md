@@ -4,7 +4,7 @@ cover_image: https://res.cloudinary.com/dkbxegavp/image/upload/v1591820988/dev.t
 tags: pipedream, github, meta, git
 ---
 
-I wrote this article with [VS Code](https://code.visualstudio.com/), on my Mac, and published it by running `git push`. [This Pipedream workflow](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit) runs on `git push`, or when I merge a pull request to `master`, and creates or updates articles in DEV using the [DEV API](https://docs.dev.to/api/).
+I wrote this article with [VS Code](https://code.visualstudio.com/), on my Mac, and published it by running `git push`. All my DEV posts are tracked in Git, and I can manage them from my local machine.
 
 Below, I'll tell you why I set this up, and show you how easy it is to configure for your own posts.
 
@@ -30,7 +30,7 @@ git commit -m "Adding first post"
 git push
 ```
 
-As soon as I push, a draft of that post will appear in my DEV account:
+As soon as I push, [this Pipedream workflow](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit) creates a draft of that post in my DEV account:
 
 ![My First Article Draft](https://res.cloudinary.com/dkbxegavp/image/upload/v1591819376/dev.to%20posts/Screen_Shot_2020-06-10_at_1.01.56_PM_ovbijo.png)
 
@@ -61,13 +61,15 @@ How cool is that!
 
 ## **Why manage DEV posts in a Git repo?**
 
-I like writing code in [VS Code](https://code.visualstudio.com/), with all its keyboard shortcuts, plugins, and other goodies I've added to make it my own. So when I write Markdown in the DEV editor, I miss my local setup. That's the primary reason I set this up: **I get to write articles in my own editor, with my own shortcuts and tools**.
+I like writing code in [VS Code](https://code.visualstudio.com/), with all its keyboard shortcuts, plugins, and other goodies I've added to make it my own.
+
+So when I write Markdown in the DEV editor, I miss my local setup. That's the primary reason I set this up: **I get to write articles in my own editor, with my own shortcuts and tools**.
 
 But storing your articles in a Github repo carries other benefits:
 
-- Every change you make to an article is tracked in Git. You can compare the changes you made between versions, or revert to an older version if you need. If you make your repo public, anyone can open a pull request to fix typos, broken links, and more.
+- Every change you make to an article is tracked in Git. You can compare the changes you made between versions, or revert to an older version. If you make your repo public, anyone can open a pull request to fix typos, broken links, and more.
 - You can run [Git hooks](https://git-scm.com/book/fa/v2/Customizing-Git-Git-Hooks) or [Github Actions](https://help.github.com/en/actions) to automate basic tasks: for example, you could run a script to validate your Markdown or spell check it before your change gets commited your repo.
-- You can trigger other, more complex automations on every `git push`. For example, once you publish your article to DEV, you could automatically post its link to Twitter.
+- You can trigger other, more complex automations on every `git push` using [Pipedream](https://pipedream.com) workflows. For example, once you publish your article to DEV, you could automatically post its link to Twitter.
 
 ## **How to set this up**
 
@@ -91,7 +93,7 @@ Visit [https://pipedream.com](https://pipedream.com) and press the **Sign In** b
 
 ![Sign up for Pipedream account](https://res.cloudinary.com/dkbxegavp/image/upload/v1591822072/dev.to%20posts/Screen_Shot_2020-06-10_at_1.38.36_PM_zrnmrj.png)
 
-Once you've signed up, [**open this DEV workflow**](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit) and click **Copy** near the top-right. **This creates a copy of my workflow in your account, that will run for _your_ repo**.
+Once you've signed up, [**open this DEV workflow**](https://pipedream.com/@dylan/publish-dev-articles-from-github-repo-p_gYCqpz/edit) and click **Copy** near the top-right. **This creates a copy of my workflow in your account, that will run for _your_ DEV repo**.
 
 First, you'll be asked to configure the **Trigger** step. This workflow runs every time Markdown files are added or modified in your repo. You'll just need to connect your Github account and select your repo from the dropdown menu:
 
@@ -129,7 +131,7 @@ As soon as you push these changes, you should see a new event appear in your Pip
 
 ![New Pipedream event](https://res.cloudinary.com/dkbxegavp/image/upload/v1591819326/dev.to%20posts/Screen_Shot_2020-06-10_at_12.57.13_PM_qu31r1.png)
 
-This should run the `create_and_update_dev_posts` step of the workflow, creating a new draft article in DEV:
+This triggers the workflow, creating a new draft article in DEV:
 
 ![New DEV draft](https://res.cloudinary.com/dkbxegavp/image/upload/v1591819376/dev.to%20posts/Screen_Shot_2020-06-10_at_1.01.56_PM_ovbijo.png)
 
@@ -169,11 +171,11 @@ The rest of this post addresses other details of the integration, like managing 
 
 ## **Making changes to articles in the DEV UI**
 
-**Any change you make to articles in the DEV UI will get overwritten unless you also make those changes to the file in `git`**.
+**Any change you make to articles in the DEV UI will get overwritten unless you also make those changes to the file in your repo**.
 
 ## **How to include images in posts**
 
-Currently, DEV doesn't have an API for uploading images tied to posts, but I'm using [Cloudinary](https://cloudinary.com/) to host mine, referencing the Cloudinary URL in my Markdown:
+Currently, DEV doesn't have an API for uploading images, so I'm using [Cloudinary](https://cloudinary.com/) to host mine, referencing the Cloudinary URL in my Markdown:
 
 ```markdown
 ![My image](https://res.cloudinary.com/dkbxegavp/image/upload/v1590355743/dev.to%20posts/dev-to-draft_bmqlgb.png)
@@ -203,17 +205,13 @@ The Pipedream workflow uses the same YAML front matter [that DEV supports](https
 
 None of the front matter variables are required. If you include no front matter, your article will be saved to DEV as a draft, with a title based on the filename (see below).
 
-### **Front Matter Variables**
-
-The Pipedream workflow passes any YAML Front Matter directly to DEV. DEV then interprets this front matter according to the rules enumerated in [their editor guide](https://dev.to/p/editor_guide). For example, you can use front matter to set your article tags, cover image, and more.
-
 ### **Titles**
 
 The `title` front matter variable is always used if present.
 
 If `title` is absent, the workflow will use the filename of the article, converting hyphens and underscores as spaces. Case is preserved:
 
-```
+```text
 my-first-post.md -> my first post
 My_First_Post.md -> My First Post
 My First Post.md -> My First Post
