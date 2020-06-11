@@ -8,7 +8,7 @@ const uniq = require("lodash.uniq");
 
 module.exports = {
   name: "New or Updated Markdown Files in Git commit",
-  version: "0.0.1",
+  version: "0.0.2",
   props: {
     db: "$.service.db",
     http: "$.interface.http",
