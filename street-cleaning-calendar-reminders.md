@@ -3,6 +3,8 @@ title: Avoiding street cleaning tickets with iOS Shortcuts, Pipedream, and Googl
 published: false
 ---
 
+test
+
 I live in San Francisco, and I park my car on the street. The Public Works department [cleans most streets on a schedule](https://www.sfpublicworks.org/services/mechanical-street-sweeping-and-street-cleaning-schedule), normally once or twice a week. If you don't move your car, you get a ticket. The schedule varies street by street, but they're kind enough to post this schedule clearly on each block:
 
 ![Example street cleaning sign](https://res.cloudinary.com/dkbxegavp/image/upload/v1590801811/dev.to%20posts/IMG_1033_d3nx9w.jpg)
