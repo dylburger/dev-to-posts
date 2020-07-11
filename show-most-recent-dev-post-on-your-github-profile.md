@@ -4,17 +4,64 @@ published: false
 tags: github, pipedream, meta, tutorial
 ---
 
-Github just launched a [`README` for your Github profile](https://dev.to/natterstefan/how-to-add-a-readme-to-your-github-profile-2bo9)! Since you can add any [Markdown](https://www.markdownguide.org/) to a `README`, you can now add images, links, and all sorts of other content to your profile.
+Github just launched the ability to add a [`README` for your Github profile](https://dev.to/natterstefan/how-to-add-a-readme-to-your-github-profile-2bo9). Since you can add any [Markdown](https://www.markdownguide.org/) to a `README`, you can now add images, links, and all sorts of other content to your profile - pretty cool!
 
-I want to take this idea a step further: **what if you could update your profile _automatically_**? Each time you tweet, update your profile to display it. Each time you play a new song on Spotify, update your profile to show what you're currently listening to.
+I want to take this idea a step further: **what if you could update your profile _automatically_**? What if you could always display your most recent tweet? What if you could list the Spotify track you're listening to _right now_?
 
-To see how this works, I'll show you how to use [Pipedream](https://pipedream.com) to display your most recent DEV post on your profile:
+Here, I'm going to show you how to display a link your newest DEV post on your profile:
 
 <img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1594433532/dev.to%20posts/Screen_Shot_2020-07-10_at_7.11.45_PM_fpo5t2.png" alt="DEV post on profile" width="600px"/>
 
-We'll use [this Pipedream workflow](https://pipedream.com/@dylan/update-github-profile-with-my-most-recent-dev-post-p_YyCV6y/edit?e=1eWKjpfvTujTCFtUwgWqhJ1Yrt2) to listen for new posts and update your profile `README` in Github. **When you publish a new post, the link on that `README` will automatically update**.
+**Each time you publish a new post, the link on that `README` will automatically update**. We'll use [Pipedream](https://pipedream.com) to manage this. **Pipedream is an integration platform for developers**. Pipedream workflows are written using [pre-built actions](https://docs.pipedream.com/workflows/steps/actions/#using-existing-actions) and [custom Node.js code](https://docs.pipedream.com/workflows/steps/code/), each of which can connect to hundreds of API integrations. Workflows run [for free](https://docs.pipedream.com/pricing/).
 
 ## **How this works**
+
+First, add a `README` to your Github profile. [Stefan] published a great article on how to set that up:
+
+{% link https://dev.to/natterstefan/how-to-add-a-readme-to-your-github-profile-2bo9 }
+
+Pick a place in that `README` where you'd like to display your most recent DEV posts. In [my `README`](https://github.com/dylburger/dylburger), I've included this Markdown:
+
+```markdown
+## DEV blog
+
+I blog on [DEV](http://dev.to/). Check out my most recent post:
+
+<!-- dev -->
+<!-- devend -->
+```
+
+Notice the comments: `<!-- dev -->` and `<!-- devend -->`. **This is where we'll insert a link to your newest DEV post**. Put these comments wherever you'd like the link to live, and push that to your profile `README`.
+
+Visit [https://pipedream.com](https://pipedream.com) and press the **Sign In** button in the top-right to sign up for a Pipedream account:
+
+![Sign up for Pipedream account](https://res.cloudinary.com/dkbxegavp/image/upload/v1591822072/dev.to%20posts/Screen_Shot_2020-06-10_at_1.38.36_PM_zrnmrj.png)
+
+Once you've signed up, open [this Pipedream workflow](https://pipedream.com/@dylan/update-github-profile-with-my-most-recent-dev-post-p_YyCV6y/edit). Each time you publish a new post, this workflow updates your Github profile. Click the **Copy** button near the top-right to create a copy of the workflow in your Pipedream account.
+
+Once you copy the workflow, you'll be asked to enter information specific to your DEV account, and your Github profile. The first step of the workflow is the **trigger** step, and this workflow is triggered on an RSS feed. DEV generates an RSS feed for every user's posts at the URL `https://dev.to/feed/{username}`. Replace `{username}` with your username, and enter the URL in the **Feed URL** section of this step. By default, Pipedream will poll your RSS feed for new items every 15 minutes, which you can change:
+
+<img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1594441766/dev.to%20posts/Screen_Shot_2020-07-10_at_9.28.59_PM_tjldk4.png" alt="DEV RSS trigger step" width="600px"/>
+
+The next step asks you to enter an **Owner** and **Repo** where your profile README lives. Enter your username in both fields:
+
+<img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1594442522/dev.to%20posts/Screen_Shot_2020-07-10_at_9.29.54_PM_qon31d.png" alt="Profile Repo" width="600px"/>
+
+The remaining steps fetch the current version of the `README`, inserts the link for the newest post within the comments, and updates the `README` with the newest content, pushing the newest link live. Since these steps interact with the Github API, you'll need to connect your Github account to the relevant steps. Scroll through the workflow and press the **Connect Github** button in each step that requires it:
+
+<img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1594443047/dev.to%20posts/Screen_Shot_2020-07-10_at_9.50.28_PM_jhzyr1.png" alt="Connect Github button" width="200px"/>
+
+Now, your workflow should be ready to run. Let's test it! At the top of your workflow, in the trigger step, you should see a sample event for the most recent post. You'll also see a **Send Test Event** button. Press it:
+
+<img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1594443250/dev.to%20posts/Screen_Shot_2020-07-10_at_9.52.40_PM_fbrbml.png" alt="Send Test Event" width="600px"/>
+
+This should run your workflow, adding the link to your profile:
+
+<img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1594433532/dev.to%20posts/Screen_Shot_2020-07-10_at_7.11.45_PM_fpo5t2.png" alt="DEV post on profile" width="600px"/>
+
+And that's it. New posts should trigger the workflow and update your profile automatically.
+
+Try [creating another workflow](https://pipedream.com/new) to see what else you can build, and let me know if you have any questions in the comments!
 
 ---
 
