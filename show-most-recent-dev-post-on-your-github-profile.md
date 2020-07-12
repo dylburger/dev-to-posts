@@ -8,7 +8,7 @@ Github just launched [READMEs for your Github profile](https://dev.to/natterstef
 
 <img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1594488579/dev.to%20posts/Screen_Shot_2020-07-11_at_10.29.00_AM_f3ji3s.png" alt="Monica Powell Github profile" />
 
-What if you could take this a step further, and **update your profile _automatically_** in response to specific events? For example, what if you could always display your most recent tweet on your profile? What if you could list the Spotify track you're listening to _right now_?
+What if you could take this a step further, and **update your profile _automatically_ in response to specific events**? For example, what if you could always display your most recent tweet on your profile? What if you could list the Spotify track you're listening to _right now_?
 
 Here, I'm going to show you how to display a link your newest DEV post on your profile:
 
