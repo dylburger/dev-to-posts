@@ -1,6 +1,6 @@
 ---
 title: Show your most recent DEV post on your Github profile with Pipedream
-published: false
+published: true
 tags: github, pipedream, meta, tutorial
 ---
 
