@@ -4,13 +4,13 @@ published: false
 tags: github, pipedream, meta, tutorial
 ---
 
-Github just launched [READMEs for your Github profile](https://dev.to/natterstefan/how-to-add-a-readme-to-your-github-profile-2bo9). This is powerful and cool. Since you can add any [Markdown](https://www.markdownguide.org/) to a `README`, you can now add images, links, and all sorts of other content to your profile. Check out [Monica Powell's profile](https://github.com/M0nica), for example:
+Github just launched [READMEs for your Github profile](https://dev.to/natterstefan/how-to-add-a-readme-to-your-github-profile-2bo9). This is pretty powerful. Since you can add any [Markdown](https://www.markdownguide.org/) to a `README`, you can now add images, links, and all sorts of other content to your profile. Check out [Monica Powell's profile](https://github.com/M0nica), for example:
 
 <img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1594488579/dev.to%20posts/Screen_Shot_2020-07-11_at_10.29.00_AM_f3ji3s.png" alt="Monica Powell Github profile" />
 
 What if you could take this a step further, and **update your profile _automatically_ in response to specific events**? For example, what if you could always display your most recent tweet on your profile? What if you could list the Spotify track you're listening to _right now_?
 
-Here, I'm going to show you how to display a link your newest DEV post on your profile:
+To test this idea, I'm going to show you how to display a link your newest DEV post on your profile:
 
 <img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1594444679/dev.to%20posts/Screen_Shot_2020-07-10_at_10.17.39_PM_rvedv0.png" alt="DEV post on profile" width="600px"/>
 
@@ -47,11 +47,11 @@ Once you copy the workflow, you'll be asked to enter information specific to you
 
 Replace `{username}` with your DEV username, and enter your DEV RSS URL in the **Feed URL** section of this step. By default, Pipedream will poll your RSS feed for new items every 15 minutes, which you can change:
 
-<img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1594441766/dev.to%20posts/Screen_Shot_2020-07-10_at_9.28.59_PM_tjldk4.png" alt="DEV RSS trigger step" width="600px"/>
+<img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1594441766/dev.to%20posts/Screen_Shot_2020-07-10_at_9.28.59_PM_tjldk4.png" alt="DEV RSS trigger step" />
 
 The next step asks you to enter an **Owner** and **Repo** where your profile README lives. Enter your username in both fields:
 
-<img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1594442522/dev.to%20posts/Screen_Shot_2020-07-10_at_9.29.54_PM_qon31d.png" alt="Profile Repo" width="600px"/>
+<img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1594442522/dev.to%20posts/Screen_Shot_2020-07-10_at_9.29.54_PM_qon31d.png" alt="Profile Repo" />
 
 The remaining steps fetch the current version of the `README`, inserts the link for the newest post within the comments, and updates the `README` with the newest content, pushing the newest link live. Since these steps interact with the Github API, you'll need to connect your Github account to the relevant steps. Scroll through the workflow and press the **Connect Github** button in each step that requires it:
 
