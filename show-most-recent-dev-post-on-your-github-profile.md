@@ -71,7 +71,7 @@ One final step - by default, the trigger step is turned **Off** so you can test 
 
 And that's it. New posts should trigger the workflow and update your profile automatically.
 
-**You can extend this idea to any data source, updating your profile when that data changes**. Pipedream [event sources](https://docs.pipedream.com/event-sources/) allow you to trigger workflows on any event from any API, so you could trigger a profile rebuild on new tweets, new Github stars, changes to an Airtable table, and more! Try [creating another workflow](https://pipedream.com/new) to see what else you can build, and let me know if you have any questions in the comments!
+**You can extend this idea to any data source, updating your profile when that data changes**. Pipedream [event sources](https://docs.pipedream.com/event-sources/) allow you to trigger workflows on any event from any API, so you could trigger a profile rebuild on new tweets, new Github stars, changes to an Airtable table, and more. Try [creating another workflow](https://pipedream.com/new) to see what else you can build, and share your workflows (or questions) in the comments!
 
 ---
 
