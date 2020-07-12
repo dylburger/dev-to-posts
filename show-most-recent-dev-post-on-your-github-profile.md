@@ -4,7 +4,7 @@ published: false
 tags: github, pipedream, meta, tutorial
 ---
 
-Github just launched [`README`s for your Github profile](https://dev.to/natterstefan/how-to-add-a-readme-to-your-github-profile-2bo9). This is powerful and cool. Since you can add any [Markdown](https://www.markdownguide.org/) to a `README`, you can now add images, links, and all sorts of other content to your profile. Check out [Monica Powell's profile](https://github.com/M0nica), for example:
+Github just launched [READMEs for your Github profile](https://dev.to/natterstefan/how-to-add-a-readme-to-your-github-profile-2bo9). This is powerful and cool. Since you can add any [Markdown](https://www.markdownguide.org/) to a `README`, you can now add images, links, and all sorts of other content to your profile. Check out [Monica Powell's profile](https://github.com/M0nica), for example:
 
 <img src="https://res.cloudinary.com/dkbxegavp/image/upload/v1594488579/dev.to%20posts/Screen_Shot_2020-07-11_at_10.29.00_AM_f3ji3s.png" alt="Monica Powell Github profile" />
 
