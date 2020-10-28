@@ -9,7 +9,7 @@ When I moved to San Francisco ten years ago, I drove nowhere. My car sat on the 
 
 Fast forward to the present. My wife and I have a child:
 
-![My child is a dog](https://res.cloudinary.com/dkbxegavp/image/upload/v1603928520/dev.to%20posts/IMG_4173_pqp6c1.jpg)
+<img alt="My child is a dog" src="https://res.cloudinary.com/dkbxegavp/image/upload/v1603928520/dev.to%20posts/IMG_4173_pqp6c1.jpg" width="200px" />
 
 We bought a new car to take him on hikes. The memories of those street cleaning tickets rushed back. I wasn't going to let the Public Works department win. I wanted a process that reminded me to move my car at the right time, no matter where I parked.
 
