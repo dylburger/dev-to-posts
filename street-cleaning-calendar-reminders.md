@@ -7,7 +7,11 @@ I grew up in Oklahoma City. In OKC, you drive everywhere. Public transporation i
 
 When I moved to San Francisco ten years ago, I drove nowhere. My car sat on the street as I biked to work. But the Public Works department [cleans most streets on a schedule](https://www.sfpublicworks.org/services/mechanical-street-sweeping-and-street-cleaning-schedule), and if you don't move your car before cleaning begins, they give you a ticket. The schedule varies from street to street - one block might be Mondays, another Wednesdays - and I would always forget to move my car at the right time. Since I rarely drove it anyway, I ended up selling it.
 
-Fast forward to the present. My wife and I bought a new car. The memories of these tickets rushed back. I wasn't going to let the Public Works department win. I wanted a process that reminded me to move my car at the right time, no matter where I parked.
+Fast forward to the present. My wife and I have a child:
+
+![My child is a dog](https://res.cloudinary.com/dkbxegavp/image/upload/v1603928520/dev.to%20posts/IMG_4173_pqp6c1.jpg)
+
+We bought a new car to take him on hikes. The memories of those street cleaning tickets rushed back. I wasn't going to let the Public Works department win. I wanted a process that reminded me to move my car at the right time, no matter where I parked.
 
 I needed a way to turn this:
 
@@ -17,11 +21,17 @@ into this:
 
 ![Calendar reminder for street cleaning](https://res.cloudinary.com/dkbxegavp/image/upload/v1590802144/dev.to%20posts/Screen_Shot_2020-05-29_at_6.28.27_PM_qs0cah.png)
 
+I ended up using [Pipedream](https://pipedream.com) to automate this, with help from a handful of APIs. The finished product wasn't at all what I envisioned at the start, and I learned a few important lessons along the way. I thought it'd be fun to talk about that journey.
+
 ## What I tried first
 
 I'll spare y'all the details of my many failed attempts, but I thought it'd be interesting to briefly describe what I tried first and where it failed.
 
-## How the final solution works
+**In short, the real world is messy**.
+
+Data scientists know this all too well.
+
+## The finished product
 
 ## What is Pipedream?
 
