@@ -9,13 +9,13 @@ When I moved to San Francisco ten years ago, I drove nowhere. My car sat on the 
 
 Fast forward to the present. My wife and I have a child:
 
-<img alt="My child is a dog" src="https://res.cloudinary.com/dkbxegavp/image/upload/v1603928520/dev.to%20posts/IMG_4173_pqp6c1.jpg" width="200px" />
+<img alt="My child is a dog" src="https://res.cloudinary.com/dkbxegavp/image/upload/v1603928520/dev.to%20posts/IMG_4173_pqp6c1.jpg" width="400px" />
 
 We bought a new car to take him on hikes. The memories of those street cleaning tickets rushed back. I wasn't going to let the Public Works department win. I wanted a process that reminded me to move my car at the right time, no matter where I parked.
 
 I needed a way to turn this:
 
-![Example street cleaning sign](https://res.cloudinary.com/dkbxegavp/image/upload/v1592876647/dev.to%20posts/Camera_2020-06-07_at_11.41.53_mzsz9w.jpg)
+<img alt="Example street cleaning sign" src="https://res.cloudinary.com/dkbxegavp/image/upload/v1592876647/dev.to%20posts/Camera_2020-06-07_at_11.41.53_mzsz9w.jpg" width="400px" />
 
 into this:
 
