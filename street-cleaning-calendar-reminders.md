@@ -21,17 +21,27 @@ into this:
 
 ![Calendar reminder for street cleaning](https://res.cloudinary.com/dkbxegavp/image/upload/v1590802144/dev.to%20posts/Screen_Shot_2020-05-29_at_6.28.27_PM_qs0cah.png)
 
-I ended up using [Pipedream](https://pipedream.com) to automate this, with help from a handful of APIs. The finished product wasn't at all what I envisioned at the start, and I learned a few important lessons along the way. I thought it'd be fun to talk about that journey.
+I used [Pipedream](https://pipedream.com) to automate this, with help from a handful of APIs. The finished product wasn't at all what I envisioned at the start, and I learned a few important lessons along the way. I thought it'd be fun to talk about that journey.
 
 ## What I tried first
 
-I'll spare y'all the details of my many failed attempts, but I thought it'd be interesting to briefly describe what I tried first and where it failed.
+I'll spare y'all the details of my many failed attempts. **In short, the real world is messy**.
 
-**In short, the real world is messy**.
+Data scientists know this all too well. There is no such thing as "clean" data, even when software records it. Observations may not include all fields, some values might get truncated, and the program that logs the data will inevitably encounter a bug that affects data collection.
 
-Data scientists know this all too well.
+Here, my data were street cleaning signs - specifically, their text. I was able to extract that text using [Google Cloud's Vision API](https://cloud.google.com/vision/docs/ocr), and was able to reliably parse that text to get the day and time of the street cleaning on sample data.
 
-## The finished product
+Then I found this sign:
+
+<img alt="First bad sign" src="https://res.cloudinary.com/dkbxegavp/image/upload/v1603931480/dev.to%20posts/Camera_2020-06-07_at_11.53.10_rafx9h.jpg" width="400px" />
+
+and this one:
+
+<img alt="Second format of street cleaning signs" src="https://res.cloudinary.com/dkbxegavp/image/upload/v1603931501/dev.to%20posts/Camera_2020-06-07_at_12.30.30_irqola.jpg" width="400px" />
+
+Clearly, I couldn't rely on parsing the text of the sign. I needed another way to get the cleaning schedules.
+
+## San Francisco Open Data to the rescue
 
 ## What is Pipedream?
 
