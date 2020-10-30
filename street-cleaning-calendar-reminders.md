@@ -3,9 +3,9 @@ title: How Pipedream saved me hundreds of dollars in parking tickets
 published: false
 ---
 
-I grew up in Oklahoma City. In OKC, you drive everywhere. Public transporation is lacking and [it's a _huge_ city](https://www.google.com/search?q=okc+square+miles&oq=okc+square+miles&aqs=chrome.0.0i457j69i57.2618j0j9&sourceid=chrome&ie=UTF-8) - over 100 square miles bigger than Los Angeles.
+I grew up in Oklahoma City. In OKC, you drive everywhere. Public transportation is lacking and [it's a _huge_ city](https://www.google.com/search?q=okc+square+miles&oq=okc+square+miles&aqs=chrome.0.0i457j69i57.2618j0j9&sourceid=chrome&ie=UTF-8) - over 100 square miles bigger than Los Angeles.
 
-Ten years ago, I moved to San Francisco, and drove nowhere. My car sat on the street as I biked to work. But the Public Works department [cleans most streets on a schedule](https://www.sfpublicworks.org/services/mechanical-street-sweeping-and-street-cleaning-schedule), and if you don't move your car before cleaning begins, they give you a ticket. The schedule varies from street to street - one block might be Mondays, another Wednesdays - and I would always forget to move my car at the right time. Since I rarely drove it anyway, I ended up selling it.
+Then I moved to San Francisco, and drove nowhere. My car sat on the street as I biked to work. But the Public Works department [cleans most streets on a schedule](https://www.sfpublicworks.org/services/mechanical-street-sweeping-and-street-cleaning-schedule), and if you don't move your car before cleaning begins, they give you a ticket. The schedule varies from street to street - one block might be Mondays, another Wednesdays - and I would always forget to move my car at the right time. Since I rarely drove it anyway, I ended up selling it.
 
 Fast forward to the present. My wife and I have a child:
 
@@ -21,7 +21,7 @@ into this:
 
 I used [Pipedream](https://pipedream.com) to automate this, with help from a handful of APIs. The finished product wasn't at all what I envisioned, and I learned a few important lessons along the way.
 
-## First attempts - extracting text from the signs
+## **First attempts - extracting text from the signs**
 
 I'll spare y'all the details of my many failed attempts. **In short, the real world produces messy data**.
 
@@ -37,9 +37,11 @@ and this one:
 
 Clearly, I couldn't rely on reading the text of every street cleaning sign. I needed a different approach.
 
-## DataSF to the rescue
+## **DataSF to the rescue**
 
-The City of San Francisco operates an "open data" portal, [DataSF](https://datasf.org/opendata/). The [DataSF team](https://datasf.org/about/#who-we-are) helps source data from various city departments and aggregates it into a single platform. Thanks to their years of effort collecting city data, you can download [COVID-19](https://data.sfgov.org/browse?category=COVID-19) stats, [311 calls](https://data.sfgov.org/City-Infrastructure/311-Cases/vw6y-z8j6), a [map of every tree maintained by the Public Works Department](https://data.sfgov.org/City-Infrastructure/Street-Tree-List/tkzw-k3nq), and hundreds more. All the data are accessible via API.
+The City of San Francisco operates an "open data" portal, [DataSF](https://datasf.org/opendata/). The [DataSF team](https://datasf.org/about/#who-we-are) helps source data from various city departments and aggregates it into a single platform.
+
+Thanks to their years of effort collecting city data, you can download [COVID-19](https://data.sfgov.org/browse?category=COVID-19) stats, [311 calls](https://data.sfgov.org/City-Infrastructure/311-Cases/vw6y-z8j6), a [map of every tree maintained by the Public Works Department](https://data.sfgov.org/City-Infrastructure/Street-Tree-List/tkzw-k3nq), and hundreds more. All the data are accessible via API.
 
 I'd used DataSF for past projects, so I figured I'd search their portal for "street cleaning". And what do you know - they provide [the street cleaning schedule for all city streets](https://data.sfgov.org/City-Infrastructure/Street-Sweeping-Schedule/yhqp-riqs).
 
@@ -52,23 +54,29 @@ Every record in this data set had the following structure:
 
 The last field looked like this:
 
-```
-LINESTRING (-122.485667402435 37.778117247851, -122.485532329198 37.776252458259)
-```
+**LINESTRING (-122.485667402435 37.778117247851, -122.485532329198 37.776252458259)**
 
 You can use a WKT viewer like [Wicket](https://arthur-e.github.io/Wicket/sandbox-gmaps3.html) to visualize these segments on a map:
 
 <img alt="Example street segment" src="https://res.cloudinary.com/dkbxegavp/image/upload/v1604092677/dev.to%20posts/Screen_Shot_2020-10-30_at_2.16.21_PM_knl6hu.png" width="400px" />
 
-**I essentially wanted to find the street segment _closest_ to where I was currently parked so I could get its cleaning schedule**. I hadn't worked with geo data much, and it wasn't immediately obvious how I'd solve that problem efficiently.
+**I wanted to find the street segment _closest_ to where I was parked so I could get its cleaning schedule**. I hadn't worked with geo data much, and it wasn't immediately obvious how I'd solve that problem efficiently.
 
-DataSF is powered by a platform called [Socrata](https://www.tylertech.com/products/socrata). When you make API requests to DataSF, you're using [Socrata's API](https://dev.socrata.com/). They provide [a list of functions](https://dev.socrata.com/docs/functions/) that can be used in API requests. I scanned this list and found the [`intersects()` function](https://dev.socrata.com/docs/functions/intersects.html), which
+DataSF is powered by a platform called [Socrata](https://www.tylertech.com/products/socrata). When you make API requests to DataSF, you're using [Socrata's API](https://dev.socrata.com/). They provide [a list of functions](https://dev.socrata.com/docs/functions/) that can be used in API requests. I scanned this list and found the [`intersects()` function](https://dev.socrata.com/docs/functions/intersects.html), which "allows you to compare two geospatial types to see if they intersect or overlap each other".
 
-> Allows you to compare two geospatial types to see if they intersect or overlap each other
+Instead of finding the closest street segments to my car, I could reframe the problem to **finding the street segment that _intersects_ with my current location**.
 
-Instead of finding the closest street segments to my car, I could reframe the problem to **finding the street segments that _intersect_ with my current location**.
+I could use my phone to get my current location. But my location is a _point_, and the street segment is a _line_ in the center of the street. Those geometries don't intersect.
 
-## What is Pipedream?
+<img alt="Point and line street drawing" src="https://res.cloudinary.com/dkbxegavp/image/upload/v1604096706/dev.to%20posts/62578758561__DB85B347-DDF0-4BFF-B8BC-DEDCE04DCA77_w4htrp.jpg" width="400px" />
+
+Instead, we need to draw a box around our current location. In WKT terms, this box is a `POLYGON`, and **we can then ask DataSF whether that polygon intersects with any streets**:
+
+<img alt="Polygon and line drawing" src="https://res.cloudinary.com/dkbxegavp/image/upload/v1604096881/dev.to%20posts/IMG_1509_cqysl4.jpg" width="400px" />
+
+This also addresses [the imperfect accuracy of GPS](https://www.gps.gov/systems/gps/performance/accuracy/#:~:text=For%20example%2C%20GPS%2Denabled%20smartphones,receivers%20and%2For%20augmentation%20systems.).
+
+## **What is Pipedream?**
 
 [Pipedream](https://pipedream.com) is an integration platform for developers. You can use it to run **workflows** - just a set of steps that compose an automation. You can run workflows on HTTP requests, emails, on a schedule, or in response to app-based events like new tweets, new files uploaded to Google Drive, and more.
 
