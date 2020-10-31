@@ -105,7 +105,7 @@ You don't have to automate everything; it's OK for scripts to prompt for user in
 
 Even in the early versions of this project, when I was taking pictures of street signs, I used [iOS Shortcuts](https://support.apple.com/guide/shortcuts/welcome/ios) to kick off the automation from my iPhone.
 
-Shortcuts provides a "no code" programming environment for your iPhone. You can use it to retrieve your current (lat, long), take pictures, make HTTP requests, trigger actions in other iPhone apps, and more. They even allow for basic flow control (if / then statements, for loops, and more). And they provide a way to prompt a user to select an option from a list. **So I used the DataSF API to find the closest streets and their cleaning schedules, then let the user choose the right one**.
+Shortcuts provides a "no code" programming environment for your iPhone. You can use it to retrieve your current location, take pictures, make HTTP requests, trigger actions in other iPhone apps, and more. They even allow for basic flow control (if / then statements, for loops, and more). And they provide a way to prompt a user to select an option from a list. **So I used the DataSF API to find the closest streets and their cleaning schedules, then let the user choose the right one**.
 
 End-to-end, here's how the automation works:
 
