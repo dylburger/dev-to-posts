@@ -83,7 +83,7 @@ You can use a WKT viewer like [Wicket](https://arthur-e.github.io/Wicket/sandbox
 
 DataSF is powered by a platform called [Socrata](https://www.tylertech.com/products/socrata). When you make API requests to DataSF, you're using [Socrata's API](https://dev.socrata.com/). They provide [a list of functions](https://dev.socrata.com/docs/functions/) that can be used in API requests. I scanned this list and found the [`intersects()` function](https://dev.socrata.com/docs/functions/intersects.html), which "allows you to compare two geospatial types to see if they intersect or overlap each other".
 
-Instead of finding the closest street segments to my car, I could reframe the problem: **I want to find the street segment that _overlaps_ with my current location**.
+Instead of finding the closest street segments to my car, I could reframe the problem: **I want to find the street segment that overlaps with my current location**.
 
 I could use my phone to get my current location. But my location is a _point_, and the street segment is a _line_ in the center of the street. Those geometries don't intersect.
 
