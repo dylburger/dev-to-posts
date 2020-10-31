@@ -135,7 +135,7 @@ chrono.parseDate("12PM Wed", new Date(), { forwardDate: true });
 
 Once I had JavaScript Dates for streets with multiple cleanings, I compared them and found the closest time. Now we could create a calender reminder.
 
-I found another problem quickly. I drive my car for errands, and might move my car days before street cleaning is scheduled. But that reminder is still on my calendar, and it'd tell me to move my car for the street I parked on days ago. I don't want to manually delete old reminders each time. I needed a way to automatically delete them when I moved my car.
+I found another problem quickly. I drive my car for errands, and might move it days before street cleaning is scheduled. But that reminder is still on my calendar, and it'd tell me to move my car for the street I parked on days ago. I don't want to manually delete old reminders each time. I needed a way to automatically delete them when I moved my car.
 
 I ended up tagging new calendar events with metadata to identify them as "move car reminders". This way, the Pipedream workflow could find and delete all existing move car reminders before creating a new one. Google Calendar allows you to add this metadata as [extended properties](https://developers.google.com/calendar/extended-properties):
 
