@@ -2,7 +2,7 @@
 title: Avoiding parking tickets with Pipedream
 published: true
 canonical_url: https://blog.pipedream.com/avoiding-parking-tickets-with-pipedream/
-cover_image: https://res.cloudinary.com/dkbxegavp/image/upload/v1604267868/dev.to%20posts/Screen_Shot_2020-11-01_at_1.56.39_PM_pgux0g.png
+cover_image: https://res.cloudinary.com/dkbxegavp/image/upload/v1604267961/dev.to%20posts/Screen_Shot_2020-11-01_at_1.58.51_PM_qvxuit.png
 ---
 
 I grew up in Oklahoma City. In OKC, you drive everywhere. Public transportation is lacking and [it's a _huge_ city](https://www.google.com/search?q=okc+square+miles&oq=okc+square+miles&aqs=chrome.0.0i457j69i57.2618j0j9&sourceid=chrome&ie=UTF-8) — over 100 square miles bigger than Los Angeles.
