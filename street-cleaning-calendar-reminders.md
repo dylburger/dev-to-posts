@@ -1,6 +1,6 @@
 ---
 title: Avoiding parking tickets with Pipedream
-published: false
+published: true
 canonical_url: https://blog.pipedream.com/avoiding-parking-tickets-with-pipedream/
 ---
 
